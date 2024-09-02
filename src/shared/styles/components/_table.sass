@@ -1,41 +1,96 @@
 .tableContainer
-    width: 100%
-    height: calc(100% - 86px)
-    margin: 0 auto
-    border-collapse: collapse
+    display: flex
+    flex-direction: column
+    flex: 1
+    min-height: calc(100vh - 150px)
+    overflow-x: auto
+    @media (max-width: 1090px)
+        .headerCell
+            flex: 1 1 100%
+            padding: 8px
+            font-size: 16px
+            text-align: left
+
+    @media (max-width: 580px)
+        .tableHeader
+            flex-direction: column
+
+        .headerCell
+            width: 100%
+            padding: 6px
+            font-size: 14px
+            text-align: left
+            border-right: none
+            border-bottom: 1px solid #9bcf96
+
+            &:last-child
+                border-bottom: none
+
+            div
+                margin-bottom: 5px
+
+        .filterInput
+            font-size: 14px
+            padding: 8px 5px 8px 30px
+
+        .headerCell div
+            margin-bottom: 5px
+
+        .filterWrapper
+            margin-bottom: 10px
+
+        svg
+            width: 14px
+            height: 14px
 
 .tableHeader
     display: flex
-    background-color: #f4f4f4
-    border-bottom: 2px solid #ccc
+    background-color: #e8f5e9
+    border-bottom: 2px solid #4b4848
 
 .headerCell
     flex: 1
     padding: 10px
     text-align: left
     font-weight: bold
-    border-right: 1px solid #ddd
+    border-right: 1px solid #9bcf96
 
-.headerCell
-:last-child
-    border-right: none
+    &:last-child
+        border-right: none
+
+    div
+        font-family: Poppins
+        font-size: 18px
+        margin-bottom: 10px
+
+.tableBody
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+    overflow-y: auto
 
 .filterInput
     width: 100%
     background: #f9fbff
     border: 1px solid transparent
     border-radius: 10px
-    -webkit-box-sizing: border-box
     box-sizing: border-box
     font-family: Poppins
-    font-size: 12px
+    font-size: 16px
     letter-spacing: -0.01em
     line-height: 18px
     outline: none
     padding: 9px 5px 9px 40px
+    transition: border 0.3s, color 0.3s
 
-.filterInput::placeholder
-    font-size: 16px
+    &::placeholder
+        font-size: 16px
+        font-family: Poppins
+        color: #7f8c8d
+
+    &:focus
+        border: 1px solid black
+        color: #2c3e50
 
 .filterWrapper
     position: relative
@@ -48,16 +103,34 @@ svg
     width: 16px
     height: 16px
     pointer-events: none
-
-.tableBody
+.loaderWrapper
+    height: 100vh
     display: flex
-    flex-direction: column
-
-.loader
-    text-align: center
-    padding: 20px
+    justify-content: center
+    align-items: center
 
 .error
     text-align: center
     padding: 20px
-    color: red
+
+    &
+        color: red
+.loaderWrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+
+.loader
+    border: 16px solid #f3f3f3
+    border-top: 16px solid #3498db
+    border-radius: 50%
+    width: 120px
+    height: 120px
+    animation: spin 2s linear infinite
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)

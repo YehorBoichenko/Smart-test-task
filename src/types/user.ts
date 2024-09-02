@@ -21,3 +21,15 @@ export interface User {
     bs: string;
   };
 }
+
+export interface UserState {
+  loading: boolean;
+  error: string | null;
+  userList: User[];
+}
+
+export const initialState: UserState = {
+  loading: false,
+  error: null,
+  userList: [],
+};
