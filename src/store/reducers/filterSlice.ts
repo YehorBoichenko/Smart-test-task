@@ -1,18 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
-interface FilterState {
-  name?: string;
-  username?: string;
-  email?: string;
-  phone?: string;
-}
-
-const initialFilterState: FilterState = {
-  name: undefined,
-  username: undefined,
-  email: undefined,
-  phone: undefined,
-};
+import { FilterState } from '@/types/filter';
+import { initialFilterState } from '@/types/filter';
 
 export const filterSlice = createSlice({
   name: 'filter',

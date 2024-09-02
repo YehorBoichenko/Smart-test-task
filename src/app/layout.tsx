@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import '@/shared/styles/main.sass';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Smart test task",
-  description: "JUNIOR FRONTEND DEVELOPER ASSIGNMENT",
+  title: 'Smart test task',
+  description: 'JUNIOR FRONTEND DEVELOPER ASSIGNMENT',
 };
 
 export default function RootLayout({

@@ -1,15 +1,7 @@
 import React from 'react';
-import styles from '@/shared/components/Wrapper.module.css';
+import classNames from 'classnames';
+import { WrapperProps } from '@/types/wrapper';
 
-interface Props {
-  className?: string;
-  children?: React.ReactNode;
-}
-
-export const Wrapper: React.FC<Props> = ({ className, children }) => {
-  return (
-    <div className={`${styles.wrapper} ${className || ''}`}>
-      {children}
-    </div>
-  );
+export const Wrapper: React.FC<WrapperProps> = ({ className, children }) => {
+  return <div className={classNames('wrapper', className)}>{children}</div>;
 };

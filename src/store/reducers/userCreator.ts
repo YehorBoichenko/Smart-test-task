@@ -1,12 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { AppDispatch } from '@/store/store';
 import { userSlice } from "@/store/reducers/usersSlice";
-
-
-const axiosClient = axios.create({
-  withCredentials: true,
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'https://jsonplaceholder.typicode.com', // Fallback URL
-});
+import { axiosClient } from '@/shared/utils/axios';
 
 // Define the async thunk for fetching users
 export const fetchUsers =

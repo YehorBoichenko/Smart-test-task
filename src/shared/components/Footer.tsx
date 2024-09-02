@@ -1,9 +1,6 @@
-import styles from '@/shared/components/Footer.module.css';
-
-const Footer = () => (
-  <footer className={styles.footer}>
-    <p className={styles.footerText}>© 2024 User Management System</p>
+export const Footer: React.FC = () => (
+  <footer className="footer">
+    <p className="footerText">© 2024 User Management System</p>
   </footer>
 );
 
-export default Footer;

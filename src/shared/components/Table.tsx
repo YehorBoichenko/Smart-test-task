@@ -1,11 +1,11 @@
 'use client';
-
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useTypedDispatch, useUserFilterSelector } from '@/shared/utils/hooks';
+// import styles from '@/shared/components/Table.module.css';
 import { fetchUsers } from '@/store/reducers/userCreator';
-import { User } from '@/types/user';
-import styles from '@/shared/components/Table.module.css';
+import { Record } from '@/shared/components/Record';
 import { filterSlice } from '@/store/reducers/filterSlice';
+import { SearchIcon } from '@/shared/components/SearchIcon';
 
 export const Table = () => {
   const { users, error, isLoading } = useUserFilterSelector();
@@ -16,38 +16,39 @@ export const Table = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <div className={styles.loader}>Loading...</div>;
+    return <div className="loader">Loading...</div>;
   }
 
   if (error) {
     console.error(error);
-    return <div className={styles.error}>Hmmm....Something went wrong</div>;
+    return <div className="error">Hmmm....Something went wrong</div>;
   }
+  const handleFilterChange = (header: string, event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      filterSlice.actions.updateFilters({
+        [header.toLowerCase()]: event.target.value,
+      })
+    );
+  };
 
   return (
-    <div className={styles.tableContainer}>
-      <div className={styles.tableHeader}>
+    <div className="tableContainer">
+      <div className="tableHeader">
         {['Name', 'Username', 'Email', 'Phone'].map((header) => (
-          <div key={header} className={styles.headerCell}>
+          <div key={header} className="headerCell">
             <div>{header}</div>
-            <div className={styles.filterWrapper}>
+            <div className="filterWrapper">
               <SearchIcon />
               <input
-                className={styles.filterInput}
+                className="filterInput"
                 placeholder={`${header} filter`}
-                onChange={(e) =>
-                  dispatch(
-                    filterSlice.actions.updateFilters({
-                      [header.toLowerCase()]: e.target.value,
-                    })
-                  )
-                }
+                onChange={(e) => handleFilterChange(header, e)}
               />
             </div>
           </div>
         ))}
       </div>
-      <div className={styles.tableBody}>
+      <div className="tableBody">
         {users.map((user) => (
           <Record key={user.id} user={user} />
         ))}
@@ -55,32 +56,3 @@ export const Table = () => {
     </div>
   );
 };
-
-const Record = ({ user }: { user: User }) => {
-  return (
-    <div className={styles.tableRow}>
-      <div className={styles.tableCell}>{user.name}</div>
-      <div className={styles.tableCell}>{user.username}</div>
-      <div className={styles.tableCell}>{user.email}</div>
-      <div className={styles.tableCell}>{user.phone}</div>
-    </div>
-  );
-};
-
-const SearchIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke="#7E7E7E"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm10 2-4.35-4.35"
-    />
-  </svg>
-);

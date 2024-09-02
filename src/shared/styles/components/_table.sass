@@ -1,0 +1,63 @@
+.tableContainer
+    width: 100%
+    height: calc(100% - 86px)
+    margin: 0 auto
+    border-collapse: collapse
+
+.tableHeader
+    display: flex
+    background-color: #f4f4f4
+    border-bottom: 2px solid #ccc
+
+.headerCell
+    flex: 1
+    padding: 10px
+    text-align: left
+    font-weight: bold
+    border-right: 1px solid #ddd
+
+.headerCell
+:last-child
+    border-right: none
+
+.filterInput
+    width: 100%
+    background: #f9fbff
+    border: 1px solid transparent
+    border-radius: 10px
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    font-family: Poppins
+    font-size: 12px
+    letter-spacing: -0.01em
+    line-height: 18px
+    outline: none
+    padding: 9px 5px 9px 40px
+
+.filterInput::placeholder
+    font-size: 16px
+
+.filterWrapper
+    position: relative
+    display: flex
+    align-items: center
+
+svg
+    position: absolute
+    left: 10px
+    width: 16px
+    height: 16px
+    pointer-events: none
+
+.tableBody
+    display: flex
+    flex-direction: column
+
+.loader
+    text-align: center
+    padding: 20px
+
+.error
+    text-align: center
+    padding: 20px
+    color: red
